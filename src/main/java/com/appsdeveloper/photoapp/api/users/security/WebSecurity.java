@@ -18,10 +18,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         this.environment = environment;
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"));
+        http.authorizeRequests().antMatchers("/users/**").permitAll();
+//        http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"));
         http.headers().frameOptions().disable();
     }
 
